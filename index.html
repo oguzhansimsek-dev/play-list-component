@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" cont="IE=edge">
+  <meta name="viewport" cont="width=device-width, initial-scale=1.0">
+  <title>Youtube Playing List</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/10314aa5a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="pl-header">
+      <div class="pl-header-top">
+        <div class="header-content">
+          <h3>Sıfırdan CSS eğitimi</h3>
+          <p>Oğuzhan Şimşek - 4/15</p>
+        </div>
+        <div onclick="openCloseList()" id="arrow" class="expand-btn btn fas fa-chevron-down"></div>
+      </div>
+      <div id="header-bottom" class="pl-header-bottom display-none">
+        <div class="pl-control-btn btn"></div>
+        <div class="pl-control-btn btn"></div>
+        <div class="add-play-list btn">
+          <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g class="style-scope yt-icon"><path d="M22,13h-4v4h-2v-4h-4v-2h4V7h2v4h4V13z M14,7H2v1h12V7z M2,12h8v-1H2V12z M2,16h8v-1H2V16z" class="style-scope yt-icon"></path></g></svg>
+        </div>
+      </div>
+    </div>
+    <div id="list-items" class="pl-list-items display-none">
+      <div id="card" class="card">
+        <div class="num"></div>
+        <div class="thumb">
+          <img src="https://i.ytimg.com/vi/yJsq0bqChko/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCEkwcN_LddaCgrxdiDimSpMR8-KA" alt="">
+        </div>
+        <div class="information">
+          <div class="title"><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam velit unde dicta esse rem dignissimos doloremque, quasi suscipit eius perferendis iste tenetur laborum ipsa non voluptatibus debitis labore mollitia sunt?</span></div>
+          <div class="author">Oğuzhan Şimşek</div>
+        </div>
+        <div class="choice"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var toggle_value = 0;
+    var arrow_value = 0;
+    var itemCount = 10;
+    function duplicateElement() {
+      let index = 0;
+      var card = document.getElementById("card");
+      while (index < itemCount) {
+        var cln = card.cloneNode(true);
+        var x = document.getElementsByClassName("num")[index].setAttribute("id",index);
+        document.getElementById(index).innerHTML = index + 1;
+        if(index < itemCount-1){
+          document.getElementById("list-items").appendChild(cln);
+        }
+        index++;
+      }
+    }
+    function openCloseList(){
+      var header_bottom = document.getElementById("header-bottom");
+      var list_items = document.getElementById("list-items");
+      var arrow = document.getElementById("arrow");
+      
+      if(toggle_value == 0){
+        header_bottom.classList.remove("display-none");
+        list_items.classList.remove("display-none");
+        arrow.classList.add("fa-chevron-up");
+        arrow.classList.remove("fa-chevron-down");
+        toggle_value = 1;
+      }else{
+        header_bottom.classList.add("display-none");
+        list_items.classList.add("display-none");
+        arrow.classList.add("fa-chevron-down");
+        arrow.classList.remove("fa-chevron-up");
+        toggle_value = 0;
+      }
+
+      console.log("Basıldı")
+    }
+    duplicateElement();
+  </script>
+
+
+</body>
+</html>
